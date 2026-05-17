@@ -1,0 +1,726 @@
+/* Base Reset and Typography */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #050508; /* Deep, dark background */
+    color: #ffffff;
+    position: relative;
+    overflow-x: hidden; /* Prevents horizontal scroll */
+}
+
+/* --- Navigation --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 5rem; 
+    position: fixed; 
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    
+    /* THE NEON GLASS EFFECT */
+    background: rgba(5, 5, 8, 0.7); /* Semi-transparent dark base */
+    backdrop-filter: blur(12px); /* Creates the frosted glass look */
+    -webkit-backdrop-filter: blur(12px); /* For Safari support */
+    border-bottom: 1px solid rgba(138, 79, 255, 0.3); /* The sharp purple line */
+    box-shadow: 0 10px 30px rgba(138, 79, 255, 0.15); /* The soft neon glow falling downward */
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 2.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: opacity 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #c19cf5;
+    text-shadow: 0 0 10px rgba(138, 79, 255, 0.6); /* Adds a tiny glow to links when hovered */
+}
+
+/* --- Social Links (Left Side) --- */
+.social-links {
+    position: fixed;
+    left: 2rem; /* Moved slightly closer to the edge */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 100;
+    
+    /* THE NEON GLASS PILL EFFECT */
+    background: rgba(5, 5, 8, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(138, 79, 255, 0.2); /* Subtle purple border */
+    padding: 1.5rem 1rem;
+    border-radius: 50px; /* Creates the capsule/pill shape */
+    box-shadow: 0 5px 20px rgba(138, 79, 255, 0.1); /* Soft background glow */
+}
+
+.social-links a {
+    color: #888;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links a:hover {
+    color: #c19cf5; /* Changes to bright purple on hover */
+    transform: scale(1.15); /* Slightly enlarges the icon */
+    filter: drop-shadow(0 0 8px rgba(138, 79, 255, 0.8)); /* Creates a neon glow behind the SVG */
+}
+/* --- Main Hero Layout --- */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    height: 100vh; /* Locks it to exactly the screen height */
+    padding: 0 8%; 
+    position: relative;
+    gap: 2rem; 
+}
+
+/* --- Left Text Styling --- */
+.left-text {
+    z-index: 2;
+    flex: 1; 
+}
+
+.greeting {
+    color: #8a4fff; 
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.name {
+    font-size: 4rem; /* Scaled down slightly for safe laptop rendering */
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+/* --- Center Portrait & Glow Effect --- */
+.center-portrait {
+    position: relative; 
+    flex: 0 0 350px; /* Safe width for standard laptops */
+    height: 480px; /* Safe height to prevent bottom overlapping */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    cursor: pointer; 
+}
+
+/* The Purple Aura */
+.glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px; 
+    height: 350px;
+    background: radial-gradient(circle, rgba(105, 40, 210, 0.5) 0%, rgba(105, 40, 210, 0) 70%);
+    filter: blur(60px);
+    z-index: -1; 
+    border-radius: 50%;
+}
+
+/* The Image Styles */
+.portrait-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    position: absolute;
+    bottom: 0;
+    mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    z-index: 2;
+}
+
+/* The Hidden Text Container */
+.portrait-intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%); 
+    width: 85%;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 3;
+    pointer-events: none; 
+}
+
+.portrait-intro h3 {
+    color: #c19cf5;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.portrait-intro p {
+    font-size: 0.95rem;
+    color: #e0e0e0;
+    line-height: 1.7;
+}
+
+/* --- THE HOVER MAGIC --- */
+
+.center-portrait:hover .portrait-img {
+    opacity: 0.08; 
+    transform: scale(0.95); 
+    filter: blur(8px);
+}
+
+.center-portrait:hover .portrait-intro {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%); 
+}
+
+/* --- Right Text Styling --- */
+.right-text {
+    z-index: 2;
+    text-align: right;
+    flex: 1; 
+}
+
+.role-prefix {
+    color: #8a4fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Gradient Text Effect */
+.role-title {
+    font-size: 3.8rem; /* Scaled down slightly */
+    line-height: 1.1;
+    font-weight: 700;
+    background: linear-gradient(to right, #6b21db, #c19cf5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Resume Button (Bottom Right) --- */
+.resume-btn {
+    position: fixed;
+    right: 4rem;
+    bottom: 2.5rem;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+}
+
+.resume-btn:hover {
+    color: #ffffff;
+}
+
+/* --- Projects Section --- */
+.projects-section {
+    min-height: 100vh;
+    padding: 6rem 12%;
+    background-color: #050508; 
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 4rem;
+    text-align: center;
+    background: linear-gradient(to right, #ffffff, #888888);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(138, 79, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(105, 40, 210, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.project-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.project-desc {
+    color: #a0a0a0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* --- Tooltip Hover Magic --- */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.tech-stack span {
+    background: rgba(138, 79, 255, 0.1);
+    color: #c19cf5;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    position: relative; 
+    cursor: help; 
+}
+
+.tech-stack span::after {
+    content: attr(data-detail); 
+    position: absolute;
+    bottom: 140%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); 
+    background-color: #0d0d14;
+    color: #e0e0e0;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    white-space: normal; 
+    width: max-content;
+    max-width: 200px;
+    text-align: center;
+    line-height: 1.4;
+    border: 1px solid rgba(138, 79, 255, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.tech-stack span:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* --- About Section --- */
+.about-section {
+    min-height: 80vh;
+    padding: 6rem 12%;
+    background-color: #050508;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+    width: 100%;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.section-title.left-align {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.about-text p {
+    color: #a0a0a0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* Abstract visual to balance the text */
+.about-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.abstract-shape {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, rgba(138, 79, 255, 0.2), rgba(105, 40, 210, 0.05));
+    border: 1px solid rgba(138, 79, 255, 0.3);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    box-shadow: inset 0 0 50px rgba(138, 79, 255, 0.1);
+    animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+}
+
+/* --- Contact Section --- */
+.contact-section {
+    min-height: 80vh;
+    padding: 6rem 12%;
+    background-color: #050508;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.contact-info p {
+    color: #a0a0a0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #c19cf5;
+    font-weight: 500;
+}
+
+.contact-item svg {
+    color: #8a4fff;
+}
+
+.contact-form-wrapper {
+    flex: 1;
+    width: 100%;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: #666;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: #8a4fff;
+    box-shadow: 0 0 15px rgba(138, 79, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.submit-btn {
+    background: linear-gradient(to right, #6b21db, #8a4fff);
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    align-self: flex-start;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(105, 40, 210, 0.3);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem 12%;
+    background-color: #030305;
+    color: #555;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .name { font-size: 3.5rem; }
+    .role-title { font-size: 3.2rem; }
+    .center-portrait { flex: 0 0 300px; height: 420px; } 
+    .glow { width: 300px; height: 300px; }
+}
+
+@media (max-width: 768px) {
+    /* 1. Stop the large white blank box and ensure a vertical flow */
+    .hero {
+        flex-direction: column; /* Stack vertically, top to bottom */
+        justify-content: flex-start; /* Align all items to the top */
+        padding-top: 8rem; /* Pushes content down past the nav bar */
+        text-align: center; /* Center text by default for this section */
+        gap: 0; /* Control spacing manually for each element */
+        height: auto; /* Allow height to fit content */
+        min-height: 100vh;
+    }
+
+    /* 2. Style and isolate the main heading containers to prevent overlaps */
+    .left-text, .right-text {
+        text-align: center; /* Overrides desktop text-alignment */
+        flex: none; /* Stop flex-grow behavior */
+        width: 100%; /* Take up full width */
+        margin-bottom: 2rem; /* Distinct space after each main title block */
+        position: relative;
+    }
+
+    /* 3. Handle the main name and title sizes to fit phone screens */
+    .name {
+        font-size: 2.8rem; /* Scaled down from desktop 4.5rem */
+        line-height: 1.1;
+        font-weight: 700;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .role-title {
+        font-size: 2.8rem; /* Scaled down Role Title */
+        line-height: 1.1;
+        font-weight: 700;
+    }
+
+    /* 4. Fix the center portrait and the text inside it */
+    .center-portrait {
+        position: relative;
+        margin: 0 auto; /* Center the box itself */
+        width: 100%;
+        max-width: 260px; /* Small safe width for mobile */
+        height: 380px; /* Locked height to prevent content crashing */
+        flex: none;
+        cursor: pointer;
+        z-index: 5;
+    }
+
+    /* Ensure the portrait image itself is scaling correctly within its container */
+    .portrait-img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        mask-image: none; /* Removed for mobile to ensure image is visible and clear */
+        -webkit-mask-image: none;
+        transition: opacity 0.3s ease, filter 0.3s ease;
+    }
+
+    /* Fix the intro text container positioning to overlay over the blurred image */
+    .portrait-intro {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -45%); /* Adjusted positioning to look perfect over the blur */
+        width: 90%;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 6;
+        pointer-events: none;
+    }
+
+    /* Adjust sizing for the intro text on mobile */
+    .portrait-intro h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #c19cf5;
+        margin-bottom: 0.8rem;
+    }
+
+    .portrait-intro p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #e0e0e0;
+    }
+
+    /* 5. Mobile-specific hover effect for the portrait */
+    .center-portrait:hover .portrait-img {
+        opacity: 0.1; /* Almost fade out image */
+        filter: blur(6px);
+    }
+
+    .center-portrait:hover .portrait-intro {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, -50%);
+    }
+
+    /* 6. Fix the Social Icons and LinkedIn/GitHub positioning */
+    .social-links {
+        position: relative; /* Remove from fixed/absolute desktop positions */
+        display: flex;
+        flex-direction: row; /* Stack them side-by-side (row) on mobile */
+        justify-content: center; /* Center the row */
+        left: 0;
+        top: 0;
+        transform: none;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin-top: 1.5rem; /* Space after the main name title */
+        margin-bottom: 2rem; /* Space before the portrait starts */
+        gap: 1.5rem; /* Space between icons */
+    }
+
+    /* Reset icon styling for mobile list */
+    .social-links a {
+        color: #c19cf5; /* Matching purple accent */
+        width: 32px; /* Small uniform size for mobile */
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .social-links a svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Hide the floating resume button on mobile, we can add it differently later */
+    .resume-btn {
+        display: none;
+    }
+
+    /* 7. Clean up the Navigation Bar and Links */
+    nav {
+        padding: 1rem;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+        background: rgba(5, 5, 8, 0.95); /* More opaque background for nav bar for clear reading */
+    }
+
+    .logo {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        margin: 0;
+        font-size: 0.85rem;
+    }
+
+    /* 8. Fix the Project grid layout */
+    .project-grid {
+        grid-template-columns: 1fr; /* Force 1 column on phones */
+    }
+
+    /* 9. Contact and About sections */
+    .about-container, .contact-container {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .about-text, .section-title.left-align {
+        text-align: center;
+    }
+
+    .submit-btn {
+        align-self: stretch;
+    }
+}
