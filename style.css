@@ -640,36 +640,37 @@ footer {
     }
 
     /* 6. Fix the Social Icons and LinkedIn/GitHub positioning */
-    .social-links {
-        position: relative; /* Remove from fixed/absolute desktop positions */
+    /* 5. Move LinkedIn & GitHub to a clean row BELOW your main hero text */
+    .social-links { 
+        position: relative; /* Removes it from the fixed top navbar layout entirely */
         display: flex;
-        flex-direction: row; /* Stack them side-by-side (row) on mobile */
-        justify-content: center; /* Center the row */
-        left: 0;
-        top: 0;
+        flex-direction: row; /* Keep them side-by-side */
+        justify-content: center; /* Center them perfectly on the screen */
+        left: auto;
+        top: auto;
         transform: none;
         background: transparent;
         border: none;
         box-shadow: none;
         padding: 0;
-        margin-top: 1.5rem; /* Space after the main name title */
-        margin-bottom: 2rem; /* Space before the portrait starts */
-        gap: 1.5rem; /* Space between icons */
+        margin: 2rem auto 1rem auto; /* Generous top margin pushes it cleanly below your title text */
+        gap: 2rem; /* Creates perfect clickable space between the two icons */
+        z-index: 10;
     }
-
-    /* Reset icon styling for mobile list */
+    
     .social-links a {
-        color: #c19cf5; /* Matching purple accent */
-        width: 32px; /* Small uniform size for mobile */
-        height: 32px;
-        display: flex;
+        color: #c19cf5; /* Keeps your signature neon purple color */
+        display: inline-flex;
         align-items: center;
         justify-content: center;
+        width: 40px; /* Slightly larger, thumb-friendly touch targets */
+        height: 40px;
+        transition: transform 0.2s ease;
     }
 
-    .social-links a svg {
-        width: 20px;
-        height: 20px;
+    .social-links a:hover {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 8px rgba(138, 79, 255, 0.8));
     }
 
     /* Hide the floating resume button on mobile, we can add it differently later */
